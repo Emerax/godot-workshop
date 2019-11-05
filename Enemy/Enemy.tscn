@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Enemy/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Enemy.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/light.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 25.7052, 25.9117 )
+
+[node name="Enemy" type="KinematicBody2D" groups=[
+"Enemy",
+]]
+collision_layer = 8
+collision_mask = 15
+script = ExtResource( 1 )
+speed = 5000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.785398
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+texture_scale = 0.6
+color = Color( 1, 0, 0, 1 )
+shadow_enabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="AreaShape" type="CollisionShape2D" parent="Area2D"]
+rotation = 0.785398
+shape = SubResource( 1 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

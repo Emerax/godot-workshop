@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Tank/Tank.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/TankBase.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/TankTurret.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/light.png" type="Texture" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 45.031
+height = 22.387
+
+[node name="Tank" type="KinematicBody2D" groups=[
+"Player",
+]]
+position = Vector2( 89.69, 90.03 )
+collision_layer = 2
+collision_mask = 9
+script = ExtResource( 1 )
+thrust = 1000.0
+velocity_decay = 0.95
+reverse_modifier = 0.1
+rotation_speed = 4.0
+laser_offset = 100.0
+
+[node name="BaseSprite" type="Sprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Turret" type="Node2D" parent="."]
+position = Vector2( -11.99, 0 )
+
+[node name="TurretSprite" type="Sprite" parent="Turret"]
+position = Vector2( 27.85, 0 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 4 )
+shadow_enabled = true

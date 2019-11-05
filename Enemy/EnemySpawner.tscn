@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Enemy/EnemySpawner.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Enemy.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/light.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 19.6474, 19.6221 )
+
+[node name="EnemySpawner" type="KinematicBody2D" groups=[
+"Enemy",
+]]
+position = Vector2( 122.105, 107.368 )
+collision_layer = 8
+collision_mask = 15
+script = ExtResource( 1 )
+spawn_cooldown = 3.0
+max_units = 8
+spawn_offset = 60.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.785398
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+color = Color( 1, 0, 0, 1 )
