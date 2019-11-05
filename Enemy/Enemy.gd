@@ -23,8 +23,10 @@ func _physics_process(delta):
 			move_and_slide(direction)
 
 func hit():
+	#This check is not 100% safe as Godot reuses variables. If the spawner has been freed
+	#it may be non-valid, or it may be some other object altogether, in which case the attempt to
+	#call report() will crash.
 	if is_instance_valid(spawner):
-		#Tell our spawner we died, if it still exists.
 		spawner.report()
 	queue_free()
 
